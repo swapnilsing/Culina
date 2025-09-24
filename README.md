@@ -26,15 +26,18 @@ MAIN WEBSITE:
 
 
 LOGIN PAGE:
+
 <img width="1920" height="1080" alt="Screenshot 2025-09-25 011139" src="https://github.com/user-attachments/assets/bb49b9cb-4857-4a03-84fa-21b0d0f3fc26" />
 
 
 SIGNUP PAGE:
+
 <img width="1920" height="1080" alt="Screenshot 2025-09-25 011931" src="https://github.com/user-attachments/assets/4c5641c9-8710-4732-a694-63b26066364d" />
 
 
 
 PROFILE PAGE:
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4ec82cde-cf00-4ef6-b3d5-ed8e79651a45" />
 
 
@@ -66,6 +69,7 @@ Database: MongoDB / Firebase (for user data).
 📄 License:
 
 MIT License © 2025 Swapnil Singh
+
 
 
 
