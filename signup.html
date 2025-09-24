@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CULINA | Sign Up</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(-45deg, #28a745, #ff9800, #66bb6a, #ffa726);
+      background-size: 400% 400%; animation: gradientShift 12s ease infinite;
+    }
+
+    @keyframes gradientShift { 0% {background-position:0% 50%} 50% {background-position:100% 50%} 100% {background-position:0% 50%} }
+
+    .signup-container {
+      background: #ffffffdd; padding: 2rem; border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2); width: 380px; text-align: center;
+    }
+
+    .signup-container h1 { color: #28a745; margin-bottom: 1.5rem; }
+
+    .input-group { margin-bottom: 1rem; text-align: left; }
+    .input-group label { font-size: 0.9rem; margin-bottom: 0.3rem; display: block; }
+    .input-group input {
+      width: 100%; padding: 0.8rem; border-radius: 10px; border: 1px solid #ccc; outline: none;
+    }
+    .input-group input:focus { border-color: #28a745; }
+
+    .btn {
+      width: 100%; padding: 0.9rem; background: linear-gradient(45deg,#28a745,#ff9800);
+      color: #fff; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem;
+    }
+    .btn:hover { transform: scale(1.05); background: linear-gradient(45deg,#ff9800,#28a745); }
+
+    .extra-links { margin-top: 1rem; font-size: 0.9rem; }
+    .extra-links a { color: #ff9800; text-decoration: none; }
+    .extra-links a:hover { color: #28a745; }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h1>🍽️ CULINA</h1>
+    <form>
+      <div class="input-group"><label>Full Name</label><input type="text" id="name" required></div>
+      <div class="input-group"><label>Email</label><input type="email" id="email" required></div>
+      <div class="input-group"><label>Password</label><input type="password" id="password" required></div>
+      <div class="input-group"><label>Confirm Password</label><input type="password" id="confirm-password" required></div>
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+    <div class="extra-links"><p>Already have an account? <a href="login.html">Login</a></p></div>
+  </div>
+
+  <script>
+    document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      if(password !== confirmPassword){ alert("Passwords do not match!"); return; }
+
+      let users = JSON.parse(localStorage.getItem("culinaUsers")) || [];
+      if(users.find(u => u.email === email)){ alert("Email already registered!"); return; }
+
+      users.push({name,email,password});
+      localStorage.setItem("culinaUsers", JSON.stringify(users));
+      alert("Sign Up Successful! Please login."); window.location.href="login.html";
+    });
+  </script>
+</body>
+</html>
