@@ -4,11 +4,17 @@ Users can search for meals, get random recipes, view details, and manage their p
 
 ✨ Features
 🔍 Search Recipes by name.
+
 🎲 Random Recipe button for inspiration.
+
 📖 Recipe Details: ingredients, instructions, image, category, and area.
+
 👤 User Authentication: Signup, Login, and Logout functionality.
+
 📝 User Profile: View and update profile details, saved favorite recipes.
+
 📱 Responsive Layout: Works on desktop, tablet, and mobile using Grid/Flexbox.
+
 🎨 Modern UI/UX: Smooth animations (fade-in, hover effects, background flow).
 
 🖼️ Demo Preview:
@@ -41,3 +47,4 @@ Database: MongoDB / Firebase (for user data).
 
 📄 License:
 MIT License © 2025 Swapnil Singh
+
