@@ -14,7 +14,6 @@ const modalCloseBtn = document.getElementById("modal-close-btn");
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const searchTerm = searchInput.value.trim();
-
   if (searchTerm) {
     searchRecipes(searchTerm);
   } else {
@@ -25,15 +24,11 @@ searchForm.addEventListener("submit", (e) => {
 async function searchRecipes(query) {
   showMessage(`Searching for "${query}"...`, false, true);
   resultsGrid.innerHTML = "";
-
   try {
     const response = await fetch(`${SEARCH_API_URL}${query}`);
     if (!response.ok) throw new Error("Network error");
-
     const data = await response.json();
     clearMessage();
-    console.log("data: ", data);
-
     if (data.meals) {
       displayRecipes(data.meals);
     } else {
@@ -60,17 +55,14 @@ function displayRecipes(recipes) {
     showMessage("No recipes to display");
     return;
   }
-
   recipes.forEach((recipe) => {
     const recipeDiv = document.createElement("div");
     recipeDiv.classList.add("recipe-item");
     recipeDiv.dataset.id = recipe.idMeal;
-
     recipeDiv.innerHTML = `
         <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" loading="lazy">
         <h3>${recipe.strMeal}</h3>
     `;
-
     resultsGrid.appendChild(recipeDiv);
   });
 }
@@ -80,14 +72,11 @@ randomButton.addEventListener("click", getRandomRecipe);
 async function getRandomRecipe() {
   showMessage("Fetching a random recipe...", false, true);
   resultsGrid.innerHTML = "";
-
   try {
     const response = await fetch(RANDOM_API_URL);
     if (!response.ok) throw new Error("Something went wrong.");
     const data = await response.json();
-
     clearMessage();
-
     if (data.meals && data.meals.length > 0) {
       displayRecipes(data.meals);
     } else {
@@ -113,7 +102,6 @@ function closeModal() {
 
 resultsGrid.addEventListener("click", (e) => {
   const card = e.target.closest(".recipe-item");
-
   if (card) {
     const recipeId = card.dataset.id;
     getRecipeDetails(recipeId);
@@ -123,13 +111,10 @@ resultsGrid.addEventListener("click", (e) => {
 async function getRecipeDetails(id) {
   modalContent.innerHTML = '<p class="message loading">Loading details...</p>';
   showModal();
-
   try {
     const response = await fetch(`${LOOKUP_API_URL}${id}`);
     if (!response.ok) throw new Error("Failed to fetch recipe details.");
     const data = await response.json();
-
-    console.log("details: ", data);
     if (data.meals && data.meals.length > 0) {
       displayRecipeDetails(data.meals[0]);
     } else {
@@ -152,18 +137,15 @@ modal.addEventListener("click", (e) => {
 
 function displayRecipeDetails(recipe) {
   const ingredients = [];
-
   for (let i = 1; i <= 20; i++) {
     const ingredient = recipe[`strIngredient${i}`]?.trim();
     const measure = recipe[`strMeasure${i}`]?.trim();
-
     if (ingredient) {
       ingredients.push(`<li>${measure ? `${measure} ` : ""}${ingredient}</li>`);
     } else {
       break;
     }
   }
-
   const categoryHTML = recipe.strCategory
     ? `<h3>Category: ${recipe.strCategory}</h3>`
     : "";
@@ -177,20 +159,19 @@ function displayRecipeDetails(recipe) {
       : "Instructions not available."
   }</p>`;
   const youtubeHTML = recipe.strYoutube
-    ? `<h3>Video Recipe</h3><div class="video-wrapper"><a href="${recipe.strYoutube}" target="_blank">Watch on YouTube</a><div>`
+    ? `<h3>Video Recipe</h3><div class="video-wrapper"><a href="${recipe.strYoutube}" target="_blank">Watch on YouTube</a></div>`
     : "";
-  const sourcHTML = recipe.strSource
+  const sourceHTML = recipe.strSource
     ? `<div class="source-wrapper"><a href="${recipe.strSource}" target="_blank">View Original Source</a></div>`
     : "";
-
   modalContent.innerHTML = `
-  <h2>${recipe.strMeal}</h2>
-  <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
-  ${categoryHTML}
-  ${areaHTML}
-  ${ingredientsHTML}
-  ${instructionsHTML}
-  ${youtubeHTML}
-  ${sourcHTML}
+    <h2>${recipe.strMeal}</h2>
+    <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}">
+    ${categoryHTML}
+    ${areaHTML}
+    ${ingredientsHTML}
+    ${instructionsHTML}
+    ${youtubeHTML}
+    ${sourceHTML}
   `;
 }

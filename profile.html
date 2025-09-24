@@ -4,27 +4,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CULINA | Profile</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      margin:0;font-family:'Poppins',sans-serif;
-      background:linear-gradient(45deg,#28a745,#ff9800,#66bb6a,#ffa726);
-      background-size:400% 400%; animation:gradientShift 12s ease infinite;
-      display:flex; align-items:center; justify-content:center; height:100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, #28a745, #ff9800, #66bb6a, #ffa726);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
     }
-    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-    .profile-container{background:#ffffffdd;padding:2rem;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.2);width:380px;text-align:center;}
-    h1{margin-bottom:1rem;color:#28a745;}
-    .input-group{margin-bottom:1rem;text-align:left;}
-    .input-group label{font-size:0.9rem;margin-bottom:0.3rem;display:block;}
-    .input-group input{width:100%;padding:0.8rem;border-radius:10px;border:1px solid #ccc;}
-    .btn{width:100%;padding:0.9rem;margin-top:0.5rem;background:linear-gradient(45deg,#28a745,#ff9800);color:#fff;border:none;border-radius:12px;cursor:pointer;}
-    .btn:hover{transform:scale(1.05);background:linear-gradient(45deg,#ff9800,#28a745);}
-    .back-link{display:block;margin-top:1rem;font-size:0.9rem;color:#ff9800;text-decoration:none;}
-    .back-link:hover{color:#28a745;}
+    @keyframes gradientShift {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
+    }
+    .profile-container {
+      background: #ffffffdd;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 380px;
+      text-align: center;
+      position: relative;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      color: #28a745;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .input-group label {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.5rem;
+      background: linear-gradient(45deg, #28a745, #ff9800);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #ff9800, #28a745);
+    }
+    .back-link {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #ff9800;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      color: #28a745;
+    }
+    .main-header, footer { display: none; }
+    
+    .whisk-animation {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 4rem;
+      animation: whiskRotate 2s infinite ease-in-out;
+      color: #ff9800;
+    }
+
+    @keyframes whiskRotate {
+      0%, 100% { transform: translateX(-50%) rotate(0deg); }
+      50% { transform: translateX(-50%) rotate(30deg); }
+    }
   </style>
 </head>
 <body>
   <div class="profile-container">
+    <div class="whisk-animation">🍳</div>
     <h1>👤 My Profile</h1>
     <form id="profile-form">
       <div class="input-group"><label>Full Name</label><input type="text" id="name" required></div>
@@ -36,27 +108,27 @@
   </div>
 
   <script>
-    const currentUser=JSON.parse(localStorage.getItem("culinaCurrentUser"));
-    const allUsers=JSON.parse(localStorage.getItem("culinaUsers"))||[];
-    if(!currentUser){alert("You must be logged in!");window.location.href="login.html";}
+    const currentUser = JSON.parse(localStorage.getItem("culinaCurrentUser"));
+    const allUsers = JSON.parse(localStorage.getItem("culinaUsers")) || [];
+    if (!currentUser) { alert("You must be logged in!"); window.location.href = "login.html"; }
 
-    document.getElementById("name").value=currentUser.name;
-    document.getElementById("email").value=currentUser.email;
+    document.getElementById("name").value = currentUser.name;
+    document.getElementById("email").value = currentUser.email;
 
-    document.getElementById("profile-form").addEventListener("submit",function(e){
+    document.getElementById("profile-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      const newName=document.getElementById("name").value.trim();
-      const newPassword=document.getElementById("password").value;
+      const newName = document.getElementById("name").value.trim();
+      const newPassword = document.getElementById("password").value;
 
-      currentUser.name=newName;
-      if(newPassword) currentUser.password=newPassword;
+      currentUser.name = newName;
+      if (newPassword) currentUser.password = newPassword;
 
-      const updatedUsers=allUsers.map(u=>u.email===currentUser.email?currentUser:u);
-      localStorage.setItem("culinaCurrentUser",JSON.stringify(currentUser));
-      localStorage.setItem("culinaUsers",JSON.stringify(updatedUsers));
+      const updatedUsers = allUsers.map(u => u.email === currentUser.email ? currentUser : u);
+      localStorage.setItem("culinaCurrentUser", JSON.stringify(currentUser));
+      localStorage.setItem("culinaUsers", JSON.stringify(updatedUsers));
 
       alert("Profile updated successfully!");
-      document.getElementById("password").value="";
+      document.getElementById("password").value = "";
     });
   </script>
 </body>

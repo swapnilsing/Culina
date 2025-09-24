@@ -3,6 +3,9 @@
   --text-dark: #343a40;
   --primary-color: #4caf50;
   --primary-dark: #459d4a;
+  --secondary-color: #ff9800;
+  --light-green: #90EE90;
+  --orange-color: #FFA500;
 }
 
 * {
@@ -17,13 +20,27 @@ body {
   padding: 30px 15px;
   background-color: var(--light-bg);
   color: var(--text-dark);
-  background: #f0f8ff;
-  overflow: hidden;
   position: relative;
-  background: radial-gradient(circle, #e0f7fa 2px, transparent 2px);
-  background-size: 40px 40px;
-  animation: moveDots 8s linear infinite;
+  overflow-x: hidden;
+  min-height: 100vh;
+  z-index: 1;
+  background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
 }
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(76, 175, 80, 0.1) 2px, transparent 2px);
+  background-size: 40px 40px;
+  animation: moveDots 20s linear infinite;
+  transform: translateZ(0);
+}
+
 @keyframes moveDots {
   from { background-position: 0 0; }
   to { background-position: 40px 40px; }
@@ -39,33 +56,171 @@ body {
   animation: rise 10s infinite ease-in;
 }
 
-.bubble:nth-child(2) { left: 20%; width: 60px; height: 60px; animation-duration: 12s; }
-.bubble:nth-child(3) { left: 40%; width: 25px; height: 25px; animation-duration: 8s; }
-.bubble:nth-child(4) { left: 60%; width: 50px; height: 50px; animation-duration: 14s; }
-.bubble:nth-child(5) { left: 80%; width: 30px; height: 30px; animation-duration: 9s; }
-
-@keyframes rise {
-  0% { transform: translateY(0) scale(1); opacity: 0.6; }
-  100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
+.bubble:nth-child(2) {
+  left: 20%;
+  width: 60px;
+  height: 60px;
+  animation-duration: 12s;
 }
 
+.bubble:nth-child(3) {
+  left: 40%;
+  width: 25px;
+  height: 25px;
+  animation-duration: 8s;
+}
 
+.bubble:nth-child(4) {
+  left: 60%;
+  width: 50px;
+  height: 50px;
+  animation-duration: 14s;
+}
+
+.bubble:nth-child(5) {
+  left: 80%;
+  width: 30px;
+  height: 30px;
+  animation-duration: 9s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Header and Footer styles */
+.main-header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.main-nav {
+  width: 100%;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Reorder navigation links using the 'order' property */
+.main-nav li:first-child { 
+  order: 1; /* Home on the left */
+}
+.main-nav li:nth-child(2) { 
+  order: 2; /* Profile in the middle */
+}
+.main-nav li:last-child { 
+  order: 3; /* Logout on the right */
+}
+
+/* Animation for the navigation links */
+.main-nav a {
+  text-decoration: none; /* Removed underline */
+  color: var(--text-dark);
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: all 0.3s ease;
+  animation: navFadeIn 1s ease forwards;
+}
+
+@keyframes navFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-nav a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px) scale(1.1); /* Animate on hover */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Removed ::after pseudo-element to remove underline */
+
+footer {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  position: relative;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Page content styles */
 .recipe-finder-container {
   max-width: 1200px;
   padding: 0 15px;
   text-align: center;
   margin-inline: auto;
+  margin-top: 50px;
 }
 
-h1 {
+.centered-logo {
   font-family: "Montserrat", sans-serif;
-  font-size: 3.5rem;
+  font-size: 5rem;
   font-weight: 700;
   margin-bottom: 30px;
   letter-spacing: -1px;
-  opacity: 0;
-  transform: translateY(-20px);
-  animation: fadeInDown 0.7s ease forwards;
+  color: transparent;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: textWave 2s ease-in-out infinite;
+}
+
+@keyframes textWave {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes fadeInDown {
@@ -90,7 +245,8 @@ h1 {
   padding: 15px 20px;
   font-size: 1rem;
   flex-grow: 1;
-  border: 1px solid #0d0d0d;
+  border: 1px solid #ccc;
+  border-right: none;
   border-radius: 8px 0 0 8px;
   outline: none;
   transition: border-color 0.3s ease;
@@ -108,18 +264,19 @@ h1 {
   background-color: var(--primary-color);
   color: #fff;
   border: 1px solid var(--primary-dark);
+  border-left: none;
   border-radius: 0 8px 8px 0;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease;
   animation: pulse 2.5s infinite;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #search-button:hover {
   background-color: var(--primary-dark);
-    transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
+
 @keyframes pulse {
   0%,
   100% {
@@ -138,21 +295,23 @@ h1 {
   border-radius: 30px;
   font-size: 1.1rem;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .random-button::after {
-    content: '';
+  content: '';
   position: absolute;
-  top: 0; left: -50%;
-  width: 50%; height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.5), transparent);
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent);
   transform: skewX(-20deg);
- 
 }
+
 .random-button:hover::after {
   animation: shine 0.8s forwards;
 }
@@ -172,7 +331,6 @@ h1 {
   }
 }
 
-
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -184,6 +342,7 @@ h1 {
   width: 100%;
   height: 220px;
   object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .recipe-item {
@@ -202,9 +361,18 @@ h1 {
 }
 
 @keyframes popIn {
-  0%   { opacity: 0; transform: scale(0.8) rotate(-3deg); }
-  70%  { opacity: 1; transform: scale(1.05) rotate(1deg); }
-  100% { opacity: 1; transform: scale(1) rotate(0); }
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-3deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
 }
 
 .recipe-item:hover {
@@ -218,8 +386,6 @@ h1 {
   padding: 15px;
   margin: 0;
 }
-
-
 
 .modal-container {
   position: fixed;
@@ -364,4 +530,28 @@ h1 {
   color: #17a2b8;
   background-color: #d1ecf1;
   border: 1px solid #bee5eb;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  z-index: -1;
+}
+
+/* Optional: To place content over the video */
+.content {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  #myVideo {
+    display: none;
+  }
 }
