@@ -36,6 +36,7 @@ Users can search for meals, get random recipes, view details, and manage their p
 3)Lookup Meal by ID: /lookup.php?i={id}
 
 💡 Future Improvements:
+
 1)Add Favorites functionality for logged-in users.
 
 2)Implement Meal Categories & Filters.
@@ -57,5 +58,6 @@ Database: MongoDB / Firebase (for user data).
 📄 License:
 
 MIT License © 2025 Swapnil Singh
+
 
 
