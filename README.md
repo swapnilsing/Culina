@@ -29,11 +29,6 @@ Where users can search for meals, get random recipes, view details, and manage t
 
 ->CULINA uses TheMealDB API to fetch recipes.
 
-1)Search by Name: /search.php?s={meal_name}
-
-2)Random Meal: /random.php
-
-3)Lookup Meal by ID: /lookup.php?i={id}
 
 💡 Future Improvements:
 
@@ -58,6 +53,7 @@ Database: MongoDB / Firebase (for user data).
 📄 License:
 
 MIT License © 2025 Swapnil Singh
+
 
 
 
