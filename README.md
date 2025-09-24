@@ -1,6 +1,6 @@
 🍽️ CULINA — Recipe Finder
 CULINA is a visually appealing recipe discovery web app powered by the TheMealDB API.
-Users can search for meals, get random recipes, view details, and manage their profiles in a smooth, animated UI.
+Where users can search for meals, get random recipes, view details, and manage their profiles in a smooth, animated UI.
 
 ✨ Features
 
@@ -58,6 +58,7 @@ Database: MongoDB / Firebase (for user data).
 📄 License:
 
 MIT License © 2025 Swapnil Singh
+
 
 
 
