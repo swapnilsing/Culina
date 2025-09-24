@@ -19,7 +19,9 @@ Where users can search for meals, get random recipes, view details, and manage t
 🎨 Modern UI/UX: Smooth animations (fade-in, hover effects, background flow).
 
 🖼️ Demo Preview:
-<img width="1919" height="893" alt="CULINA Demo Screenshot" src="https://github.com/user-attachments/assets/efb1c6fd-e78f-4d0c-8580-a0a936ebeb66" />
+
+<img width="1919" height="902" alt="image" src="https://github.com/user-attachments/assets/340cbe46-c345-416c-9082-2c54674af155" />
+
 <img width="1913" height="893" alt="image" src="https://github.com/user-attachments/assets/486f314b-83ab-4c06-bbdd-050b0da4c3b5" />
 <img width="1906" height="911" alt="Screenshot 2025-09-24 192505" src="https://github.com/user-attachments/assets/9e26d71b-64e6-4936-9101-b36e73b35c36" />
 
@@ -53,6 +55,7 @@ Database: MongoDB / Firebase (for user data).
 📄 License:
 
 MIT License © 2025 Swapnil Singh
+
 
 
 
