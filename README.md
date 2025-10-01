@@ -1,4 +1,6 @@
 #FrontEnd WebDevelopment Internship Project 
+
+
 🍽️ CULINA — Recipe Finder Website
 
 CULINA is a visually appealing recipe discovery web app powered by the TheMealDB API.
@@ -71,6 +73,7 @@ Database: MongoDB / Firebase (for user data).
 📄 License:
 
 MIT License © 2025 Swapnil Singh
+
 
 
 
